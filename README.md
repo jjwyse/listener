@@ -1,4 +1,3 @@
-webhooks
-========
-
-Web application to handle callbacks and display them in the UI
+=======
+# listener
+Listens for HTTP POST requests and logs the output to stdout
