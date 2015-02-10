@@ -21,11 +21,10 @@ httpServer.listen(app.get('port'), function () {
 });
 
 app.post('/', function(req, res) {
-   var body = JSON.stringify(req.body);
-   var headers = JSON.stringify(req.headers);
    var webhookJson = {};
-   webhookJson['body'] = body;
-   webhookJson['headers'] = headers;
-   console.log(webhookJson);
+   webhookJson['body'] = req.body;
+   webhookJson['headers'] = req.headers;
+   webhookJson['query'] = req.query;
+   console.log(JSON.stringify(webhookJson, null, 2));
    res.end();
 });
