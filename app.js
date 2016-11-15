@@ -1,9 +1,9 @@
-var express = require('express');
+const express = require('express');
 
-var http = require('http');
-var path = require('path');
+const http = require('http');
+const path = require('path');
 
-var app = express();
+const app = express();
 
 // all environments
 app.set('port', process.env.PORT || 31337);
@@ -14,17 +14,17 @@ app.use(express.methodOverride());
 app.use(app.router);
 
 // development only
-var httpServer = http.createServer(app);
+const httpServer = http.createServer(app);
 
-httpServer.listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'));
+httpServer.listen(app.get('port'), () => {
+  console.log(`Listening for POSTs on port ${app.get('port')}`);
 });
 
-app.post('/', function(req, res) {
-   var webhookJson = {};
-   webhookJson['body'] = req.body;
-   webhookJson['headers'] = req.headers;
-   webhookJson['query'] = req.query;
-   console.log(JSON.stringify(webhookJson, null, 2));
-   res.end();
+app.post('/', (req, res) => {
+  console.log(JSON.stringify({
+    body: req.body,
+    header: req.headers,
+    query: req.query
+  }, null, 2));
+  res.end();
 });
